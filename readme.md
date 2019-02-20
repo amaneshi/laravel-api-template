@@ -1,3 +1,5 @@
+##[Postman Collection with authorization requests](https://www.getpostman.com/collections/e8aaf23decfa7b4937b4)
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
