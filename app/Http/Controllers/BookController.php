@@ -6,6 +6,7 @@ use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Publisher;
+use App\Models\Genre;
 
 class BookController extends Controller
 {
@@ -14,10 +15,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
-
+        $books = \App\Http\Resources\BookCollection::make(Book::all());
         return response()->json($books,200);
     }
 
@@ -78,5 +78,12 @@ class BookController extends Controller
 
         $publisher->books()->save($book);
         return response()->json($book->load('publisher'), 200);
+    }
+
+    public function addGenre(Book $book, Genre $genre)
+    {
+        //dd($genre);
+        $book->genres()->attach($genre->id);
+        return response()->json($book->load('genres'), 200);
     }
 }
